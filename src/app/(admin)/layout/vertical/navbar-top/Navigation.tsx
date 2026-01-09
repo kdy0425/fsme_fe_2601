@@ -26,7 +26,7 @@ const Navigation = () => {
   
   useEffect(() => {
     // authInfo에서 roles의 첫 번째 값이 "Admin"인지 확인
-    if ('roles' in authInfo && Array.isArray(authInfo.roles)) {
+    if (authInfo && 'roles' in authInfo && Array.isArray(authInfo.roles)) {
       setIsAdmin(authInfo.roles.includes('ADMIN'))
     }
     
