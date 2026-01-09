@@ -122,8 +122,12 @@ const SidebarItems = () => {
     return false
   }
 
+  const isKbfpsPage = pathname?.startsWith('/sta/kbfps')
+
   // 현재 경로와 관련된 메뉴 항목만 렌더링
-  const filteredMenuItems = menuItems.filter(isParentActive)
+  const filteredMenuItems = isKbfpsPage
+    ? menuItems
+    : menuItems.filter(isParentActive)
 
   // 메뉴 아이템을 재귀적으로 렌더링하는 함수
   const renderMenuItems = (items: MenuitemsType[]) => {

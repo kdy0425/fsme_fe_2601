@@ -2,41 +2,7 @@ import { NextResponse, NextRequest } from 'next/server'
 
 /** Middleware-Main */
 export async function middleware(request: NextRequest) {
-  const isAuthenticated = checkAuthentication(request)
-  if(request.url.indexOf('/user/login') < 0){
-    if (!isAuthenticated) {
-      console.log('User not authenticated, redirecting to login')
-        const url = request.nextUrl.clone()
-        url.pathname = '/user/login'
-        url.searchParams.set('redirected', 'true')
-        return NextResponse.redirect(url)
-      
-    }
-  }else{
-    if (isAuthenticated) {
-      const url = request.nextUrl.clone()
-      url.pathname = '/'
-      return NextResponse.redirect(url)
-    }
-  }
-
-  let response = NextResponse.next()
-  // 각 미들웨어 함수 실행
-  response = addPathToHeader(request)
-
-  return response
-}
-
-/** JWT 보유여부 체크 */
-function checkAuthentication(req: NextRequest) {
-  const token = req.cookies.get('JWT')
-
-  if (token && typeof token === 'object' && 'value' in token) {
-    // JWT 토큰이 존재할 경우,
-    return true
-  }
-
-  return false
+  return addPathToHeader(request)
 }
 
 // URL의 Path를 헤더에 추가하는 함수
