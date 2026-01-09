@@ -1,0 +1,673 @@
+/* -----------------------------------------------------------------------
+
+Name: layoutPtl.css
+Categorie : 포털 레이아웃
+Author : 이상혁
+Version : v.1.0
+Created : 2024-09-10
+Last update : 2024-09-10
+
+-------------------------------------------------------------------------- */
+
+.header-inner {
+    padding: 0px;
+}
+.header-inner,
+.page-footer .page-footer-inner {
+    width: 1400px;
+    margin: 0px auto;
+}
+
+/* ===================================
+	메인페이지 시작
+====================================== */
+.page-portal-main .top-navigation-wrapper {
+    border-bottom: none;
+}
+.page-portal-main .page-content-wrapper {
+    padding: 0px;
+}
+.page-portal-main .body-content {
+    width: 100%;
+}
+.page-portal-main .page-content-wrapper .page-content-inner {
+    padding: 0px;
+}
+
+/* 메인 컨텐츠 레이아웃 시작 */
+.page-portal-main .main-container {
+    padding: 40px 0px;
+}
+.page-portal-main .main-container .main-container-inner {
+    width: 1400px;
+    margin: 0 auto;
+}
+.page-portal-main .main-container.main-container-type-a {
+    background-color: #0063FE;
+}
+.page-portal-main .main-container.main-container-type-b {
+    background-color: #242748;
+}
+.page-portal-main .main-container.main-container-type-c {
+    background-color: #D1DFE9;
+}
+.page-portal-main .main-container.main-container-type-d {
+    background-color: #0091FE;
+}
+.page-portal-main .main-contents-group {
+    /* display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: row;
+    gap: 60px; */
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 60px;
+}
+.page-portal-main .main-contents-group .main-contents {
+    /* width: 50%; */
+}
+.page-portal-main .main-contents-group.main-visual .main-contents {
+    align-self : center;
+}
+.page-portal-main .main-contents-group .main-contents.main-contents-6 {
+    width: 60%;
+}
+.page-portal-main .main-contents-group .main-contents.main-contents-7 {
+    width: 70%;
+}
+.page-portal-main .main-contents-group .main-contents.main-contents-8 {
+    width: 80%;
+}
+.page-portal-main .main-contents-group .main-contents.main-contents-880 {
+    width: 880px;
+}
+.page-portal-main .main-contents-group .main-contents.main-contents-9 {
+    width: 90%;
+}
+.page-portal-main .main-contents-group .main-contents.main-contents-full {
+    width: 100%;
+}
+.page-portal-main .main-contents-box {
+    width: 100%;
+    height: 100%;
+    padding: 30px;
+    background-color: #fff;
+    box-shadow: 4px 4px 8px rgba(14, 36, 66, 30%);
+    border-radius: 20px;
+}
+.contents-box-title {
+    font-size: 26px;
+    line-height: 30px;
+    margin: 0px 0px 10px 0px;
+}
+/* 메인 컨텐츠 레이아웃 끝 */
+
+/* 즐겨찾는 메뉴 레이아웃 시작 */
+.menu-list {
+    overflow: hidden;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+.menu-list .menu-list-item {
+    width: 30%;
+    text-align: center;
+}
+.menu-list a {
+    font-weight: bold;
+    display: inline-block;
+    text-decoration: none;
+}
+.menu-list .menu-list-text {
+    margin-top: 10px;
+    font-size: 20px;
+    line-height: 22px;
+    color: #fff;
+    font-weight: 200;
+}
+.menu-list .menu-list-icon {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 94px;
+    height: 94px;
+    border-radius: 20px;
+    margin: 0px auto;
+    background-color: #fff;
+}
+.menu-list a:hover .menu-list-icon {
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
+}
+/* 즐겨찾는 메뉴 레이아웃 끝 */
+
+/* 비주얼 슬라이드 레이아웃 시작 */
+.slick-slider-wrapper {
+    position: relative;
+}
+.slick-slider-wrapper .slick-slider-inner {
+    width: 880px;
+}
+.slick-slider-wrapper,
+.slick-slider-wrapper .slick-slider {
+    height: 400px;
+}
+.slick-slider-wrapper .slick-slider .slick-track .slick-slide,
+.slick-slider-wrapper .slick-slider .slick-track .slick-slide > div,
+.slick-slider-wrapper .slick-slider .slick-track .slick-slide > div .slider-item,
+.slick-slider-wrapper .slick-slider .slick-track,
+.slick-slider-wrapper .slick-slider .slick-list {
+    height: 100%;
+}
+.slick-slider-wrapper .slick-slider .slick-list {
+    background-color: #fff;
+    border-radius: 20px;
+}
+.slick-prev {
+    left: -18px;
+}
+.slick-next {
+    right: -18px;
+}
+.slick-prev, 
+.slick-next {
+    z-index: 2;
+}
+.slick-prev:before, 
+.slick-next:before {
+    content: "" !important;
+    display: block;
+    background-size: 100% !important;
+}
+.slick-prev, 
+.slick-next,
+.slick-prev:before, 
+.slick-next:before {
+    width: 40px !important;
+    height: 40px !important;
+}
+.slick-prev:before {
+    background: url(../images/common/icon/icon_main_slick_prev.png) no-repeat 50% 50%;
+}
+.slick-next:before {
+    background: url(../images/common/icon/icon_main_slick_next.png) no-repeat 50% 50%;
+}
+.slick-dots {
+    bottom: 10px !important;
+}
+.slick-dots li button:before {
+    font-size: 16px !important;
+    line-height: 20px !important;
+    width: 20px !important;
+    height: 20px !important;
+    color: #B6BED0 !important;
+    opacity: 1 !important;
+}
+.slick-dots li.slick-active button:before {
+    color: #0063FE !important;
+    opacity: 1 !important;
+}
+/* 비주얼 슬라이드 레이아웃 끝 */
+
+/* 비주얼 배너 레이아웃 시작 */
+.main-banner-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+.main-banner-wrapper.main-banner-01 {
+    background-color: #232647;
+}
+.main-banner-text {
+    position: absolute;
+    top: 40px;
+    left: 60px;
+    color: #fff;
+}
+.main-banner-text .text-piont {
+    color: #00F0FF;
+}
+.main-banner-text .banner-text-small {
+    font-size: 12px;
+    margin-bottom: 14px;
+}
+.main-banner-text .banner-text-large {
+    font-size: 30px;
+    line-height: 34px;
+    margin-bottom: 14px;
+    font-weight: 700;
+}
+.main-banner-text .banner-text-description {
+    font-size: 14px;
+    line-height: 18px;
+}
+.main-banner-img {
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+}
+.main-banner-img.banner-img-01 {
+    width: 100%;
+    height: 400px;
+    background: url(../images/common/bg/bg_main_slick_slider_01.png) no-repeat 100% 100%;
+}
+/* 비주얼 배너 레이아웃 끝 */
+
+/* 평균 유가 정보 시작 */
+.oilps-map-info-group {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: row;
+    gap: 60px;
+}
+.oilps-map-info-col {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+    gap: 10px;
+    width: 50%;
+}
+.oilps-map-info-box-group {
+    width: 100%;
+}
+.oilps-map-info-box {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: row;
+    gap: 10px;
+    background-color: #E6EFF5;
+    border: 1px solid #C6D2E7;
+    border-radius: 10px;
+    padding: 10px 15px 10px 10px;
+    margin-bottom: 10px;
+}
+.oilps-info-title {
+    border-radius: 10px;
+    padding: 10px 0px;
+    text-align: center;
+    color: #fff;
+    font-size: 16px;
+    line-height: 18px;
+    width: 56px;
+}
+.info-title-type1 {
+    background-color: #399758;
+}
+.info-title-type2 {
+    background-color: #D73A09;
+}
+.info-title-type3 {
+    background-color: #A36802;
+}
+.info-title-type4 {
+    background-color: #1a5c99;
+}
+.oilps-info-con {
+    position: relative;
+    flex: 1 1 auto;
+}
+.oilps-map-info-box .oilps-info-con::after {
+    content: "";
+    position: absolute;
+    top: 0px;
+    right: -12px;
+    height: 100%;
+    border-right: 1px solid #C6D2E7;
+}
+.oilps-map-info-box .oilps-info-con:last-child:after {
+    border: none;
+}
+.oilps-info-con-title {
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 4px;
+}
+.oilps-info-con-value {
+    font-weight: bold;
+    text-align: right;
+}
+.info-value-small {
+    font-size: 12px;
+}
+
+.oilps-map-info-box-col-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+.oilps-map-info-box-col-group .oilps-map-info-box {
+    width: 190px;
+    flex-direction: column;
+    margin-bottom: 0px;
+}
+.oilps-map-info-box-col-group .oilps-info-title {
+    width: 100%;
+    padding: 4px 0px;
+}
+
+.contents-box-con .contents-explanation {
+    background-position: 18px 13px;
+}
+.contents-box-con .contents-explanation .contents-explanation-text {
+    padding-left: 30px;
+}
+
+
+.oilps-map-wrapper {
+
+}
+.oilps-map-inner {
+    position: relative;
+}
+.oilps-map-inner .oilps-map-point {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 295px;
+    height: 370px;
+}
+.oilps-map-inner .map-point {
+    position: absolute;
+    color: #2A3547;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    gap: 0px;
+}
+.oilps-map-inner .map-point:hover {
+    color: #1F42C0;
+    text-decoration: none;
+}
+.oilps-map-inner .map-point.active {
+    gap: 4px;
+    margin-top: -50px;
+}
+.oilps-map-inner .map-point.active .map-point-icon {
+    display: block;
+    width: 25px;
+    height: 36px;
+    background: url(../images/common/bg/bg_main_map_point.png) no-repeat 0 2px;
+}
+.oilps-map-inner .map-point .map-point-text {
+    font-size: 18px;
+    text-align: center;
+    font-weight: bold;
+    text-shadow: -1px 0px #fff, 0px 1px #fff, 1px 0px #fff, 0px -1px #fff;
+}
+.oilps-map-inner .map-point.active .map-point-text {
+    font-size: 24px;
+    color: #1F42C0;
+}
+.oilps-map-inner .oilps-map-bg {
+    width: 295px;
+    height: 370px;
+}
+/* 평균 유가 정보 끝 */
+
+/* 공지사항 시작 */
+.main-info-board-list {
+	padding-top: 6px;
+}
+.main-info-board-list > li {
+	position: relative;
+    border-top: 1px solid #BFCDD2;
+	padding-top: 10px;
+	margin-top: 10px;
+}
+/* .main-info-board-list > li:last-child {
+	border-bottom: none;
+    padding-bottom: 0px;
+	margin-bottom: 0px;
+} */
+.main-info-board-more-btn:hover {
+	opacity: 1;
+}
+.main-info-board-inner {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+    gap: 4px;
+}
+.main-info-link {
+    line-height: 18px;
+    color: #2A3547;
+}
+.main-info-link:hover {
+    color: #1F42C0;
+    text-decoration: none;
+}
+.main-info-link-title {
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 28px;
+}
+.main-info-link-con {
+    display: block;
+    margin-top: 10px;
+}
+.main-info-link-title,
+.main-info-link-con {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+}
+.main-info-link-date {
+    position: absolute;
+    left: 0px;
+    width: 80px;
+    text-align: center;
+    background-color: #00479d;
+    border-radius: 10px;
+	color: #fff;
+	letter-spacing: -1px;
+	padding: 4px 0px;
+}
+.main-notice-link-title {
+    font-size: 18px;
+    line-height: 24px;
+    font-weight: 600;
+}
+.main-notice-link-date {
+    font-size: 16px;
+    line-height: 24px;
+}
+.main-notice-link-title {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
+}
+.main-notice-link-date {
+    text-align: center;
+    letter-spacing: -1px;
+}
+.info-month-date {
+    color: #6C798F;
+}
+.main-info-link-date .info-date {
+    font-size: 24px;
+    display: block;
+}
+.contents-box-title {
+    position: relative;
+}
+.main-title-option {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+}
+.main-title-option .main-info-board-more-btn {
+	width: 69px;
+	height: 28px;
+	background: url(../images/common/icon/btn_main_more.png) no-repeat center center;
+	cursor: pointer;
+    border: none;
+}
+/* 공지사항 끝 */
+
+/* 법령정보 & 시스템운영 시작 */
+.main-bottom-slogan-group {
+    text-align: center;
+    margin-bottom: 30px;
+}
+.main-bottom-slogan-group .slogan-title {
+    font-size: 38px;
+    line-height: 40px;
+    font-weight: bold;
+    color: #242748;
+}
+.main-bottom-slogan-group .slogan-text {
+    font-size: 30px;
+    line-height: 34px;
+    color: #fff;
+    margin-top: 10px;
+}
+.main-operate-contects .contents-box-title {
+    text-align: center;
+}
+.main-operate-contects .contents-box-title > span {
+    position: relative;
+    z-index: 1;
+}
+.main-operate-contects .contents-box-title > span::after {
+    content: "";
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    display: block;
+    width: 100%;
+    height: 20px;
+    background-color: #00F0FF;
+    z-index: -1;
+}
+
+.shortcut-btn-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+.shortcut-btn {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: row;
+    gap: 20px;
+    padding: 20px;
+    background-color: #E2E5EB;
+    border-radius: 10px;
+    width: 400px;
+    color: #2A3547;
+}
+.shortcut-btn:hover {
+    text-decoration: none;
+}
+.shortcut-icon {
+    width: 40px;
+    height: 40px;
+}
+.shortcut-icon.shortcut-icon-01 {
+    background: url(../images/common/icon/shortcut_icon_01.png) no-repeat 50% 50%;
+}
+.shortcut-icon.shortcut-icon-02{
+    background: url(../images/common/icon/shortcut_icon_02.png) no-repeat 50% 50%;
+}
+.shortcut-icon.shortcut-icon-03 {
+    background: url(../images/common/icon/shortcut_icon_03.png) no-repeat 50% 50%;
+}
+.shortcut-icon.shortcut-icon-04 {
+    background: url(../images/common/icon/shortcut_icon_04.png) no-repeat 50% 50%;
+}
+.shortcut-text-group {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+}
+.shortcut-text-group .shortcut-text-title {
+    
+}
+.shortcut-text-group .shortcut-text-con {
+    font-size: 22px;
+    font-weight: bold;
+}
+.shortcut-arrow {
+    width: 34px;
+    height: 34px;
+    margin-left: auto;
+    background: url(../images/common/icon/shortcut_icon_arrow.png) no-repeat 50% 50%;
+}
+
+.service-center-group {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 30px;
+}
+.service-center-group::before {
+    content: "";
+    position: absolute;
+    top: -40px;
+    right: 15px;
+    width: 60px;
+    height: 60px;
+    background: url(../images/common/icon/iocn_service_center.png) no-repeat 50% 50%;
+}
+.service-center-tel {
+    font-size: 50px;
+    line-height: 50px;
+    font-weight: bold;
+}
+.service-center-time {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+}
+.service-center-time .center-time-title {
+    font-size: 30px;
+    line-height: 30px;
+    font-weight: bold;
+    text-align: center;
+    color: #0091FE;
+}
+.service-center-time .center-time-date {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: row;
+    gap: 20px;
+    width: 100%;
+    padding-top: 20px;
+    border-top: 1px solid #2A3547;
+}
+
+.service-center-time .center-time-date .center-time-week {
+    font-size: 24px;
+    font-weight: 700;
+}
+.service-center-time .center-time-date .center-time-working {
+    margin-left: auto;
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 26px;
+}
+.service-center-time .center-time-date .center-time-working > li {
+    text-align: right;
+}
+/* 법령정보 & 시스템운영 끝 */
+/* ===================================
+	메인페이지 끝
+====================================== */

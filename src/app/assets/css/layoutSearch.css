@@ -1,0 +1,404 @@
+/* -----------------------------------------------------------------------
+
+Name: layoutSearch.css
+Categorie : 통합검색결과 레이아웃
+Author : 이상혁
+Version : v.1.0
+Created : 2024-11-10
+Last update : 2024-11-10
+
+-------------------------------------------------------------------------- */
+
+.header-inner {
+    padding: 0px;
+}
+.header-inner,
+.page-footer .page-footer-inner {
+    width: 1400px;
+    margin: 0px auto;
+}
+
+/* ===================================
+	메인페이지 시작
+====================================== */
+.page-search .page-content-wrapper {
+    padding: 0px;
+}
+.page-search .page-content-wrapper .page-content-inner {
+    padding: 20px 0px;
+}
+.page-search .body-content {
+    width: 1400px;
+    margin: 0 auto;
+    position: relative;
+    height: 100%;
+}
+
+
+.page-search .search-total-wrapper {
+    /* display: flex; */
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: row;
+    gap: 20px;
+}
+.page-search .content-wrapper {
+    padding: 0px 0px 40px 0px;
+}
+
+.page-search .search-section .page-title {
+    line-height: 30px;
+    font-size: 30px;
+}
+.page-search .as-wrapper {
+    margin-top: 62px;
+    margin-bottom: 30px;
+    display: block;
+    min-width: 240px;
+    background: #FFF;
+    z-index: 1;
+}
+
+.page-search .navbar-collapse {
+    width: 100%;
+}
+.page-search ul.navbar-nav {
+    display: flex;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    width: 100%;
+}
+.page-search ul.navbar-nav > li {
+    position: relative;
+    display: table-cell;
+    width: 0;
+    flex-grow: 1;
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    text-align: center;
+}
+.page-search ul.navbar-nav > li::before {
+    content: "";
+    position: absolute;
+    top: 18px;
+    left: 0px;
+    border-left: 1px solid #cecece;
+    height: 15px;
+}
+.page-search ul.navbar-nav > li:first-child::before,
+.page-search nav.navbar.navbar-default ul.nav > li > a::after {
+    content: none;
+}
+
+.page-search .clfix:after {
+    content: "";
+    display: block;
+    height: 0px;
+    clear: both;
+    visibility: hidden;
+}
+.page-search .search-key {
+    padding-bottom: 30px;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.5;
+    padding-top: 10px;
+}
+.page-search em {
+    color: #ff2626;
+    font-style: normal;
+}
+.search-key strong {
+    color: #030079;
+}
+.search-category {
+    border-top: 1px solid #d4d4d4;
+    padding: 20px 0 20px 0;
+}
+.search-category .search-top-align {
+    text-align: right;
+}
+.search-category .search-top-align + .category {
+    margin-top: 10px;
+}
+.search-category .category {
+    border: 1px solid #d4d4d4;
+    background: #f9f9f9;
+    padding: 20px;
+    text-align: left;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+.search-category .category dt {
+    display: block;
+    margin-bottom: 20px;
+}
+.search-category .category dd {
+    display: block;
+    margin: 0px;
+}
+.search-category .category dd ul {
+    display: block;
+}
+.search-category .category dd ul li {
+    display: inline-block;
+    border-left: 2px solid #000;
+    margin-bottom: 5px;
+}
+.search-category .category dd ul li:first-child {
+    border-left: none;
+}
+.search-category .category dd ul li a {
+    display: block;
+    padding: 0 10px;
+    color: #000;
+}
+.search-category .category dd ul li a span {
+    font-weight: normal;
+}
+.search-category .category dd ul li:first-child a {
+    padding-left: 0px;
+}
+.search-section {
+    border-top: 1px solid #d4d4d4;
+    padding: 30px 0;
+}
+.search-section .section-title span.result-total {
+    font-size: 13px;
+    color: #333;
+    display: inline-block;
+    margin-left: 5px;
+    font-style: normal;
+    font-weight: normal;
+}
+.thumbnail {
+    float: left;
+    max-width: 120px;
+    max-height: 120px;
+    margin-right: 10px;
+    display: block;
+    padding: 4px;
+    margin-bottom: 20px;
+    line-height: 1.42857;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    -webkit-transition: border 0.2s ease-in-out;
+    -o-transition: border 0.2s ease-in-out;
+    transition: border 0.2s ease-in-out;
+}
+.thumbnail + dl {
+    min-height: 120px;
+}
+.search-section .section-list > ul > li {
+    border-bottom: 1px dotted #d4d4d4;
+    padding-bottom: 14px;
+    margin-bottom: 14px;
+}
+.search-section .section-list > ul > li:last-child {
+    border: none;
+}
+.search-section .section-list > ul > li > dl {
+    display: table;
+    word-break: break-all;
+    white-space: normal;
+    margin-top: 14px;
+}
+.search-section .section-list > ul > li > dl > dt {
+    display: block;
+    margin-bottom: 5px;
+}
+.search-section .section-list > ul > li > dl > dt > a {
+    font-size: 16px;
+    text-decoration: underline;
+    text-underline-position: under !important;
+    color: #1234a2;
+}
+.search-section .section-list > ul > li > dl > dd {
+    margin: 0px;
+}
+.search-section .section-list > ul > li > dl > dd.site-url > a {
+    color: #3a982a;
+}
+.search-section .section-list > ul > li > dl > dd.site-file > ol {
+    display: block;
+    margin-top: 5px;
+}
+.search-section .section-list > ul > li > dl > dd.site-file > ol > li {
+    display: block;
+    padding: 2px 0 2px 17px;
+    background: url(../images/common/bu/bu_sidebar_menu_3depth.png) 0 9px no-repeat;
+    line-height: 1.5;
+}
+.search-section .section-list > ul > li > dl > dd.site-file > ol > li > a {
+    display: inline-block;
+    margin-right: 10px;
+    vertical-align: middle;
+}
+.search-section .section-list > ul > li > dl > dd.site-file > ol > li > a.icon-file-down {
+    width: 19px;
+    height: 16px;
+    text-indent: -9999px;
+    overflow: hidden;
+    background: url(../images/common/icon/ico_btn_disk_dark.png) center center no-repeat;
+    margin-right: 8px;
+}
+.search-section .section-list > ul > li > dl > dd.site-file > ol > li > a.icon-file-view {
+    width: 19px;
+    height: 16px;
+    text-indent: -9999px;
+    overflow: hidden;
+    background: url(../images/common/icon/icon_popup_url_dark.png) center center no-repeat;
+    margin-right: 8px;
+}
+.result-more {
+    display: block;
+    text-align: right;
+}
+.result-more a {
+    text-decoration: underline;
+    text-underline-position: under !important;
+}
+.search-word {
+    border: 1px solid #b9b9b9;
+    padding: 15px;
+    margin-bottom: 10px;
+    position: relative;
+    min-height: 55px;
+}
+.search-word h2 {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    margin-top: 0px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+    display: inline-block;
+    height: 22px;
+    line-height: 22px;
+    text-align: left;
+}
+.search-word ul li a {
+    display: block;
+    line-height: 1.5;
+    padding: 3px 0px 3px 20px;
+    position: relative;
+}
+.search-word .search-word-content {
+    display: block;
+    margin-top: 28px;
+}
+.search-word ul li a em {
+    position: absolute;
+    left: 0;
+    top: 6px;
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    background: #6f6f6f;
+    text-align: center;
+    color: #FFF;
+    line-height: 16px;
+    font-size: 11px;
+}
+.search-word ul > li > a:hover {
+    text-decoration: underline;
+    color: #333;
+}
+.search-word .search-word-tabs {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    text-align: right;
+}
+.search-word .search-word-tabs li {
+    display: inline-block;
+    border: 1px solid #d7d7d7;
+    margin-left: -1px;
+}
+.search-word .search-word-tabs > li > a {
+    position: relative;
+    float: left;
+    display: inline-block;
+    padding: 0 5px;
+    height: 20px;
+    line-height: 20px;
+    text-decoration: none;
+    color: #333;
+    font-size: 12px;
+    font-weight: 600;
+}
+.search-word .search-word-tabs > li.active > a {
+    color: #FFF;
+    background: #374966;
+}
+.search-word .tab-content .search-word-content {
+    margin-top: 0px;
+}
+.search-word .realtime ul li a {
+    display: block;
+    line-height: 1.5;
+    padding: 3px 45px 3px 20px;
+    position: relative;
+}
+.search-word .real-time ul li a span {
+    text-align: center;
+    font-family: Tahoma, Geneva, sans-serif;
+    font-size: 11px;
+    padding-left: 16px;
+    width: 45px;
+    position: absolute;
+    top: 5px;
+    right: 0;
+    display: inline-block;
+    height: 16px;
+    line-height: 16px;
+}
+.search-word .real-time ul li a span.up {
+    background: url(../images/common/icon/icon_searchWord_up.png) left center no-repeat;
+}
+.search-word .real-time ul li a span.down {
+    background: url(../images/common/icon/icon_searchWord_down.png) left center no-repeat;
+}
+.search-word .real-time ul li a span.new {
+    background: url(../images/common/icon/icon_searchWord_new.png) 85% center no-repeat;
+}
+.search-layer {
+    position: absolute;
+    top: 6px;
+    left: 0px;
+}
+.search-select {
+    position: absolute;
+    top: 34px;
+    left: 0px;
+    background: #FFF;
+    border: 1px solid #CCC;
+    width: 360px;
+    border-radius: 3px;
+    padding: 5px;
+    display: none;
+    z-index: 100;
+}
+.search-select.on {
+    display: block;
+}
+.search-select ul {
+    display: block;
+    background: #FFF;
+}
+.search-select ul li {
+    padding: 5px 5px;
+    text-align: left;
+}
+.search-select ul li:hover {
+    background-color: #ececec;
+}
+
+/* ===================================
+	메인페이지 끝
+====================================== */
+.search-category .category dd ul li a.active {
+    color: #1f42c0;
+}

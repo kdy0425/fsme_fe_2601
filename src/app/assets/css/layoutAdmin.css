@@ -1,0 +1,30 @@
+/* -----------------------------------------------------------------------
+
+Name: layoutAdmin.css
+Categorie : 관리자 레이아웃
+Author : 이상혁
+Version : v.1.0
+Created : 2024-09-10
+Last update : 2024-09-10
+
+-------------------------------------------------------------------------- */
+.page-admin-wrapper .header-inner,
+.page-admin-wrapper .page-footer .page-footer-inner {
+    width: 100%;
+    margin: 0px auto;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+.page-admin-wrapper .top-navigation-inner {
+    max-width: 100%;
+}
+.page-admin-wrapper .body-content {
+    width: 100%;
+}
+.page-admin-wrapper .body-content,
+.page-admin-wrapper header {
+    min-width: 1280px;
+}
+.page-content-wrapper .page-content-inner {
+    padding: 20px 0px 20px 20px;
+}

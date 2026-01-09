@@ -1,0 +1,53 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true,
+    "sourceMap": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "paths": {
+      // root 경로
+      "@/*": ["./src/*"],
+      // global 경로 시작
+      "@/api/*": ["./src/app/api/*"],
+      "@/components/*": ["./src/app/components/*"],
+      "@/store/*": ["./src/store/*"],
+      "@/types/*": ["./src/types/*"],
+      "@/utils/*": ["./src/utils/*"],
+
+      // fsm 경로 시작
+      "@/fsm/*": ["./src/app/(fsm)/*"],
+      // fsm 경로 종료
+
+      // admin 경로 시작
+      "@/admin/*": ["./src/app/(admin)/admin/*"],
+      // admin 경로 종료
+
+      // common 경로 시작
+      "@/common/*": ["./src/app/(common)/common/*"],
+      // common 경로 종료
+
+      // sample 경로 시작
+      "@/sample/*": ["./src/app/(sample)/*"],
+      // sample 경로 종료
+    }
+  },
+
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "exclude": ["node_modules", "npm_packages", ".next"]
+}

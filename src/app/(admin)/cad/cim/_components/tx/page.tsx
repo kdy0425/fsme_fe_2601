@@ -1,0 +1,457 @@
+import CustomFormLabel from "@/app/components/forms/theme-elements/CustomFormLabel"
+import TableDataGrid from "@/app/components/tables/CommDataGrid2"
+import { CommSelect, CtpvSelect, LocgovSelect } from "@/app/components/tx/commSelect/CommSelect"
+import { CommTextField } from "@/app/components/tx/commTextField/CommTextFiled"
+import { StatusType } from "@/types/message"
+import { sendHttpRequest } from "@/utils/fsms/common/apiUtils"
+import { getExcelFile, getToday } from "@/utils/fsms/common/comm"
+import { CustomTextField } from "@/utils/fsms/fsm/mui-imports"
+import { toQueryParameter } from "@/utils/fsms/utils"
+import { Box, Button } from "@mui/material"
+import { useEffect, useState } from "react"
+import { HeadCell, Pageable2 } from "table"
+import TxDetailDataGrid from "./TxDetailDataGrid"
+
+/** 유류구매카드관리 - 보조금카드관리 - 카드정보관리 - 택시 */
+const cadCimHeadCellsTaxi: HeadCell[] = [
+  {
+    id: 'brno',
+    numeric: false,
+    disablePadding: false,
+    label: '사업자등록번호',
+    format: 'brno',
+  },
+  {
+    id: 'vhclNo',
+    numeric: false,
+    disablePadding: false,
+    label: '차량번호',
+  },
+  {
+    id: 'custSeNm',
+    numeric: false,
+    disablePadding: false,
+    label: '고객구분',
+  },
+  {
+    id: 'flnm',
+    numeric: false,
+    disablePadding: false,
+    label: '소유자명',
+  },
+  {
+    id: 'crdcoNm',
+    numeric: false,
+    disablePadding: false,
+    label: '카드사명',
+  },
+  {
+    id: 'cardSeNm',
+    numeric: false,
+    disablePadding: false,
+    label: '카드구분',
+  },
+  {
+    id: 'cardNoS',
+    numeric: false,
+    disablePadding: false,
+    label: '카드번호',
+    format: 'cardNo',
+  },
+  {
+    id: 'crdcoSttsNm',
+    numeric: false,
+    disablePadding: false,
+    label: '카드상태',
+  },
+  {
+    id: 'dscntNm',
+    numeric: false,
+    disablePadding: false,
+    label: '할인여부',
+  },
+]
+
+interface listSearchObj {
+  page: number
+  size: number
+  ctpvCd: string
+  locgovCd: string
+  brno: string
+  vhclNo: string
+  flnm: string
+  crdcoCd: string
+  cardSttsCd: string
+  cardSeCd: string
+  koiCd: string
+  dscntYn: string
+}
+
+interface Row {
+  brno: string
+  vhclNo: string
+  custSeNm: string
+  flnm: string
+  crdcoNm: string
+  cardSeNm: string
+  cardNoS: string
+  cardSttsNm: string
+  dscntYnNm: string
+}
+
+export interface DetailRow extends Row {
+  cardBid: string
+  carBid: string
+  chgRsnCn: string
+  inputDt: string
+  locgovNm: string
+  agncyDrvBgngYmd: string
+  agncyDrvEndYmd: string
+  issuSeNm: string
+  rgtrId: string
+  regDt: string
+  mdfrId: string
+  mdfcnDt: string
+  vhclSttsCd: string
+  crdcoCd: string
+  cardNo: string
+  vonrRrno: string
+  rrno: string
+  rrnoS: string
+  cardNoDe: string
+  crdcoSttsNm: string
+  rcptYmd: string
+  crdtCeckSeNm: string
+  stlmCardNo: string
+}
+
+const TxPage = () => {
+  const [params, setParams] = useState<listSearchObj>({
+    page: 1,
+    size: 10,
+    ctpvCd: '',
+    locgovCd: '',
+    brno: '',
+    vhclNo: '',
+    flnm: '',
+    crdcoCd: '',
+    cardSttsCd: '',
+    cardSeCd: '',
+    koiCd: '',
+    dscntYn: '',
+  })
+
+  const [rows, setRows] = useState<Row[]>([])
+  const [totalRows, setTotalRows] = useState<number>(0)
+  const [rowIndex, setRowIndex] = useState<number>(-1)
+  const [detail, setDetail] = useState<DetailRow>({
+    brno: '',
+    vhclNo: '',
+    custSeNm: '',
+    flnm: '',
+    crdcoNm: '',
+    cardSeNm: '',
+    cardNoS: '',
+    cardSttsNm: '',
+    dscntYnNm: '',
+    cardBid: '',
+    carBid: '',
+    chgRsnCn: '',
+    inputDt: '',
+    locgovNm: '',
+    agncyDrvBgngYmd: '',
+    agncyDrvEndYmd: '',
+    issuSeNm: '',
+    rgtrId: '',
+    regDt: '',
+    mdfrId: '',
+    mdfcnDt: '',
+    vhclSttsCd: '',
+    crdcoCd: '',
+    cardNo: '',
+    vonrRrno: '',
+    rrno: '',
+    rrnoS: '',
+    cardNoDe: '',
+    crdcoSttsNm: '',
+    rcptYmd: '',
+    crdtCeckSeNm: '',
+    stlmCardNo: '',
+  })
+
+  const [searchFlag, setSearchFlag] = useState<boolean | null>(null)
+  const [pageable, setPageable] = useState<Pageable2>({
+    pageNumber: 1,
+    pageSize: 10,
+    totalPages: 1,
+  })
+  const [loading, setLoading] = useState<boolean>(false)
+  const [excelFlag, setExcelFlag] = useState(false)
+
+  const [remoteFlag, setRemoteFlag] = useState<boolean | undefined>()
+  const [isDataProcessing, setIsDataProcessing] = useState<boolean>(false)
+
+  useEffect(() => {
+    if (searchFlag != null) {
+      getData()
+    }
+  }, [searchFlag])
+
+  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const { name, value } = event.target
+    setParams((prev) => ({ ...prev, [name]: value }))
+    setExcelFlag(false)
+  }
+
+  const getData = async () => {
+    setLoading(true)
+    
+    try {
+      const searchObj = {
+        ...params,
+        page: params.page,
+        size: params.size,
+      }
+
+      let endpoint = '/fsm/cad/cim/tx/getAllCardInfoMng' + toQueryParameter(searchObj)
+
+      const response = await sendHttpRequest('GET', endpoint, null, true, {
+        cache: 'no-store',
+      })
+
+      if (
+        response &&
+        response.resultType === 'success' &&
+        response.data.content.length != 0
+      ) {
+        // 데이터 조회 성공시
+        setRows(response.data.content)
+        setTotalRows(response.data.totalElements)
+        setPageable({
+          pageNumber: response.data.pageNumber + 1,
+          pageSize: response.data.pageSize,
+          totalPages: response.data.totalPages,
+        })
+
+        // click event 발생시키기
+        handleClick(response.data.content[0], 0)
+      } else {
+        setRows([])
+        setTotalRows(0)
+        setPageable({
+          pageNumber: 1,
+          pageSize: 10,
+          totalPages: 1
+        })
+      }
+    } catch (error: StatusType | any) {
+      // 에러시
+      alert(error.errors?.[0].reason)
+      setRows([])
+      setTotalRows(0)
+      setPageable({
+        pageNumber: 1,
+        pageSize: 10,
+        totalPages: 1
+      })
+    } finally {
+      setLoading(false)
+      setExcelFlag(true)
+    }
+  }
+
+  const handleClick = (row: DetailRow, index?: number) => {
+    setDetail(row)
+    setRowIndex(index ?? -1)
+  }
+
+  const handlePaginationModelChange = (page: number, pageSize: number) => {
+    setParams((prev) => ({ ...prev, page: page, pageSize: pageSize }))
+    setSearchFlag((prev) => !prev)
+  }
+
+  const handleAdvancedSearch = () => {
+    setParams((prev) => ({ ...prev, page: 1, size: 10 }))
+    setSearchFlag((prev) => !prev)
+  }
+
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) =>{
+    if (event.key === 'Enter') {
+      getData()
+    }
+  }
+
+  const handleExcelDownload = async () => {
+    if (rows.length === 0) {
+      alert("엑셀파일을 다운로드할 데이터가 없습니다.")
+      return
+    }
+
+    if (!excelFlag) {
+      alert("조회조건이 변경되었습니다. 검색 후 다운로드가 가능합니다.")
+      return
+    }
+
+    let searchObj = {
+      ...params,
+      excelYn: 'Y',
+    }
+
+    let endpoint = '/fsm/cad/cim/tx/cardInfoMngExcel' + toQueryParameter(searchObj)
+    await  getExcelFile(endpoint, '카드정보관리_택시_' + getToday() + ".xlsx")
+  }
+
+  return (
+    <>
+      <Box component="form" onSubmit={handleAdvancedSearch} sx={{ mb: 2 }}>
+        <Box className="sch-filter-box">
+          <div className="filter-form">
+            <div className="form-group">
+              <CustomFormLabel className="input-label-display" htmlFor="sch-ctpv">
+                  <span className="required-text">*</span>시도명
+              </CustomFormLabel>
+              <CtpvSelect 
+                  pValue={params.ctpvCd}
+                  handleChange={handleSearchChange}
+                  pName="ctpvCd"
+                  htmlFor={'sch-ctpv'}
+              />
+            </div>
+            <div className="form-group">
+              <CustomFormLabel className="input-label-display" htmlFor="sch-locgov">
+                  <span className="required-text">*</span>관할관청
+              </CustomFormLabel>
+              <LocgovSelect
+                  ctpvCd={params.ctpvCd}
+                  pValue={params.locgovCd}
+                  handleChange={handleSearchChange}
+                  pName="locgovCd"
+                  htmlFor={'sch-locgov'}
+              />
+            </div>
+            <CommTextField 
+                type="brno"
+                pValue={params.brno}
+                require={false}
+                handleChange={handleSearchChange}
+                handleKeyDown={handleKeyDown}
+            />
+            <CommTextField 
+                type="vhclNo"
+                pValue={params.vhclNo}
+                require={false}
+                handleChange={handleSearchChange}
+                handleKeyDown={handleKeyDown}
+            />
+            <div className="form-group">
+              <CustomFormLabel className="input-label-display" htmlFor="sch-flnm">
+                  소유자명
+              </CustomFormLabel>
+              <CustomTextField 
+                  type="text"
+                  id="sch-flnm"
+                  name="flnm"
+                  value={params.flnm}
+                  onChange={handleSearchChange}
+                  onKeyDown={handleKeyDown}
+              />
+            </div>
+          </div><hr></hr>
+          <div className="filter-form">
+            <div className="form-group">
+              <CustomFormLabel className="input-label-display" htmlFor="sch-crdco">
+                  카드사
+              </CustomFormLabel>
+              <CommSelect 
+                  cdGroupNm="CCGC"
+                  pValue={params.crdcoCd}
+                  handleChange={handleSearchChange}
+                  pName="crdcoCd"
+                  htmlFor={'sch-crdco'}
+                  addText='전체'
+              />
+            </div>
+            <div className="form-group">
+              <CustomFormLabel className="input-label-display" htmlFor="sch-cardStts">
+                  카드상태
+              </CustomFormLabel>
+              <CommSelect 
+                  cdGroupNm="008"
+                  pValue={params.cardSttsCd}
+                  handleChange={handleSearchChange}
+                  pName="cardSttsCd"
+                  htmlFor={'sch-cardStts'}
+                  addText='전체'
+              />
+            </div>
+            <div className="form-group">
+              <CustomFormLabel className="input-label-display" htmlFor="sch-cardSe">
+                  카드구분
+              </CustomFormLabel>
+              <CommSelect 
+                  cdGroupNm="CCG0"
+                  pValue={params.cardSeCd}
+                  handleChange={handleSearchChange}
+                  pName="cardSeCd"
+                  htmlFor={'sch-cardSe'}
+                  addText='전체'
+              />
+            </div>
+            <div className="form-group">
+              <CustomFormLabel className="input-label-display" htmlFor="sch-dscnt">
+                  할인여부
+              </CustomFormLabel>
+              <CommSelect 
+                  cdGroupNm="027"
+                  pValue={params.dscntYn}
+                  handleChange={handleSearchChange}
+                  pName="dscntYn"
+                  htmlFor={'sch-dscntYn'}
+                  addText='전체'
+              />
+            </div>
+          </div>
+        </Box>
+        <Box className="table-bottom-button-group">
+          <div className="button-right-align">
+            {/* 조회 */}
+            <Button variant="contained" color="primary" onClick={handleAdvancedSearch}>
+              검색
+            </Button>
+            {/* 엑셀 */}
+            <Button variant="contained" color="success" onClick={handleExcelDownload}>
+              엑셀
+            </Button>
+          </div>
+        </Box>
+      </Box>
+
+      {/* 테이블영역 시작 */}
+      <Box>
+        <TableDataGrid
+          headCells={cadCimHeadCellsTaxi}
+          rows={rows}
+          totalRows={totalRows}
+          loading={loading}
+          onRowClick={handleClick}
+          onPaginationModelChange={handlePaginationModelChange}
+          pageable={pageable}
+          selectedRowIndex={rowIndex}
+        />
+      </Box>
+      {/* 테이블영역 끝 */}
+
+      {/* 상세영역 */}
+      {rows && rows.length > 0 && rowIndex != -1 ? (
+        <>
+          <TxDetailDataGrid detail={detail} />
+        </>
+      ) : (
+        <></>
+      )}
+
+    </>
+  )
+}
+
+export default TxPage
