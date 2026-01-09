@@ -22,7 +22,7 @@ import DetailSearch from '../navbar-top/DetailSearch'
 // components 모듈
 import CustomFormLabel from '@/components/forms/theme-elements/CustomFormLabel'
 import CustomTextField from '@/components/forms/theme-elements/CustomTextField'
-import { MenuitemsType } from './MenuItems'
+import Menuitems, { MenuitemsType } from './MenuItems'
 import { Padding } from '@mui/icons-material'
 
 // API로 부터 가져올 데이터를 매핑할 타입 선언
@@ -73,7 +73,7 @@ const SidebarItems = () => {
   const hideMenu: any = lgUp
     ? customizer.isCollapse && !customizer.isSidebarHover
     : ''
-  const [menuItems, setMenuItems] = useState<MenuitemsType[]>([]) // 메뉴 항목을 상태로 설정
+  const [menuItems, setMenuItems] = useState<MenuitemsType[]>(Menuitems) // 메뉴 항목을 상태로 설정
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -96,9 +96,11 @@ const SidebarItems = () => {
         setMenuItems(mappedData)
       } else {
         console.error('No data found or request failed')
+        setMenuItems((prevItems) => (prevItems.length ? prevItems : Menuitems))
       }
     } catch (error) {
       console.error('Error fetching data:', error)
+      setMenuItems((prevItems) => (prevItems.length ? prevItems : Menuitems))
     }
   }
 
