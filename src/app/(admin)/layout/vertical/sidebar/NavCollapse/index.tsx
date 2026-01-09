@@ -14,6 +14,7 @@ import { styled, useTheme } from '@mui/material/styles';
 
 // custom imports
 import NavItem from '../NavItem';
+import Scrollbar from '@/app/components/custom-scroll/Scrollbar';
 
 // plugins
 import { IconChevronDown, IconChevronUp } from '@tabler/icons-react';
@@ -71,7 +72,7 @@ export default  function NavCollapse ({
   }, [pathname, menu.children]);
 
   const ListItemStyled = styled(ListItemButton)(() => ({    
-    width: 'fit-content',
+    width: '100%',
     marginBottom: '2px',
     padding: '8px 10px',
     paddingLeft: hideMenu ? '10px' : level > 2 ? `${level * 15}px` : '10px',
@@ -130,8 +131,10 @@ export default  function NavCollapse ({
         <ListItemText color="inherit">{hideMenu ? '' : <>{t(`${menu.title}`)}</>}</ListItemText>
         {!open ? <IconChevronDown size="1rem" /> : <IconChevronUp size="1rem" />}
       </ListItemStyled>
-      <Collapse in={open} timeout="auto" className="nav-lower-level-collapse">
-        {submenus}
+      <Collapse in={open} timeout="auto" className="nav-lower-level-collapse" sx={{ margin: '0 !important' }}>
+        <Scrollbar sx={{ maxHeight: '100%', overflowX: 'auto' }} autoHide={false}>
+          {submenus}
+        </Scrollbar>
       </Collapse>
     </>
   );

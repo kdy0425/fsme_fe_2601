@@ -12,6 +12,7 @@ const SimpleBarStyle = styled(SimpleBar)(() => ({
 interface PropsType {
   children: React.ReactElement | React.ReactNode;
   sx: SxProps;
+  [x: string]: any;
 }
 
 const Scrollbar = (props: PropsType) => {
