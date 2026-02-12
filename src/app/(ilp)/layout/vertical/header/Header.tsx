@@ -17,6 +17,7 @@ import { userProfileType } from '@/types/auth/auth'
 import { getAuthInfo } from '@/utils/fsms/common/user/authUtils'
 import MyPage from './MyPage'
 import Favorites from './Favorites'
+import SessionReset from '@/app/components/fsms/fsm/user/SessionReset'
 import LogoutButton from '@/app/components/fsms/fsm/user/LoginButton'
 import UserAuthContext from '@/app/components/context/UserAuthContext'
 import { sendHttpRequest } from '@/utils/fsms/common/apiUtils'
@@ -135,7 +136,7 @@ const Header = () => {
 
         <Stack spacing={1} direction="row" alignItems="center">
           {/* 로그인/프로필 분기처리 */}
-          {isLoggedIn ? (
+          {/* {isLoggedIn ? ( */}
             <>
               {/* <UserProfile
                 userNm={authStatus.userNm}
@@ -186,19 +187,20 @@ const Header = () => {
                   </span>
                   님이 로그인하셨습니다.
                 </span>
+                <SessionReset/>
                 <LogoutButton />
                 {/* <Button className="top-btn btn-mypage">마이 페이지</Button> */}
                 {/* 즐겨찾는 메뉴 */}
                 <Favorites />
               </Stack>
             </>
-          ) : (
-            <Stack spacing={1} className="global-link-wrapper">
+          {/* ) : ( */}
+            {/* <Stack spacing={1} className="global-link-wrapper">
               <Link className="top-btn btn-login" href={'/user/login'}>
                 로그인
               </Link>
-            </Stack>
-          )}
+            </Stack> */}
+          {/* )} */}
         </Stack>
       </ToolbarStyled>
       <NtcnDialog

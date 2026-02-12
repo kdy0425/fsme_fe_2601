@@ -81,7 +81,7 @@ pre {
   align-items: center;
   justify-content: flex-end;
   flex-direction: row;
-  gap: 25px;
+  gap: 20px;
   white-space: nowrap;
 }
 .username-zone,
@@ -162,6 +162,23 @@ pre {
   color: #1f42c0;
   font-weight: bold;
 }
+
+.session-reset-btn{
+  background-color: #EFF0F2;border-radius: 20em;padding:0 12px 0 10px;height: 36px;line-height: 36px;display: flex;align-items: center;gap:4px;font-size:16px;border:0;
+}
+.session-reset-btn:hover{
+  background-color: #e6e7e8;
+}
+.session-reset-btn svg{
+  
+}
+.session-reset-btn .time{
+  font-weight: 600;color:#5C6A86;min-width: 45px;
+}
+.session-reset-btn .text{
+  font-weight: 700;color:#1F42C0;
+}
+
 /* ===================================
 상단 글로벌 끝
 ====================================== */

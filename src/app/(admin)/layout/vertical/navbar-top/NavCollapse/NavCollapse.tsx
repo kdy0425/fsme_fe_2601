@@ -45,9 +45,9 @@ const NavCollapse = ({ menu, level, pathWithoutLastPart, pathDirect }: NavCollap
   
   useEffect(() => {
     // authInfo에서 roles의 첫 번째 값이 "Admin"인지 확인
-    if ('roles' in authInfo && Array.isArray(authInfo.roles)) {
-      setIsAdmin(authInfo.roles.includes('ADMIN'))
-    }
+    // if ('roles' in authInfo && Array.isArray(authInfo.roles)) {
+    //   setIsAdmin(authInfo.roles.includes('ADMIN'))
+    // }
     
   }, [authInfo])
 
